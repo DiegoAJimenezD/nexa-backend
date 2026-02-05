@@ -27,7 +27,7 @@ public class UsuarioDTO {
     private String email;
 
     @NotBlank
-    private String contraseña;
+    private String password;
 
     private Rol rol;
 }

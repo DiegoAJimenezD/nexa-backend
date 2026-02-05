@@ -5,6 +5,7 @@ import com.nexa.backend.entity.Usuario;
 import com.nexa.backend.repository.UsuarioRepository;
 import com.nexa.backend.service.UsuarioService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 public class UsuarioServiceImpl implements UsuarioService {
 
     private final UsuarioRepository usuarioRepositorio;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public Usuario crearUsuario(UsuarioDTO usuarioDTO) {
@@ -22,7 +24,7 @@ public class UsuarioServiceImpl implements UsuarioService {
         usuario.setSegundoApellido(usuarioDTO.getSegundoApellido());
         usuario.setNumeroTelefono(usuarioDTO.getNumeroTelefono());
         usuario.setEmail(usuarioDTO.getEmail());
-        usuario.setContraseña(usuarioDTO.getContraseña());
+        usuario.setPassword(passwordEncoder.encode(usuarioDTO.getPassword()));
         usuario.setRol(usuarioDTO.getRol());
 
         return usuarioRepositorio.save(usuario);

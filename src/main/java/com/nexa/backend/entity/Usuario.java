@@ -40,7 +40,7 @@ public class Usuario {
 
     //Contraseña
     @Column(nullable = false)
-    private String contraseña;
+    private String password;
 
     //Rol del usuario
     @Enumerated(EnumType.STRING)
